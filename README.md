@@ -1,4 +1,4 @@
-# gategoDeploy2
+# Gatego Deploy
 
 ![img](https://i.imgur.com/fp6dNwZ.jpg)
 
