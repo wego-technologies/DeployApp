@@ -58,35 +58,35 @@ class _SSIDInputState extends State<SSIDInput> {
                     onChanged: (val) => wifiName = val,
                     controller: controller,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).primaryColor,
                     ),
                     decoration: InputDecoration(
-                      focusColor: Colors.white,
+                      focusColor: Theme.of(context).primaryColor,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(
-                            color: Colors.white,
+                            color: Theme.of(context).primaryColor,
                             width: 1,
                             style: BorderStyle.solid),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(
-                            color: Colors.white,
+                            color: Theme.of(context).primaryColor,
                             width: 1,
                             style: BorderStyle.solid),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(
-                            color: Colors.white,
+                            color: Theme.of(context).primaryColor,
                             width: 1,
                             style: BorderStyle.solid),
                       ),
                       fillColor: Colors.lightBlueAccent,
                       labelText: 'Network Name',
                       labelStyle: TextStyle(
-                        color: Colors.white70,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                   ),
@@ -94,7 +94,7 @@ class _SSIDInputState extends State<SSIDInput> {
                 IconButton(
                   icon: Icon(
                     Icons.sync,
-                    color: Colors.white,
+                    color: Theme.of(context).primaryColor,
                     size: 30,
                   ),
                   onPressed: () => wifi(),
@@ -111,29 +111,35 @@ class _SSIDInputState extends State<SSIDInput> {
                 wifiPSK = value;
               },
               style: TextStyle(
-                color: Colors.white,
+                color: Theme.of(context).primaryColor,
               ),
               obscureText: true,
               decoration: InputDecoration(
-                focusColor: Colors.white,
+                focusColor: Theme.of(context).primaryColor,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                   borderSide: BorderSide(
-                      color: Colors.white, width: 1, style: BorderStyle.solid),
+                      color: Theme.of(context).primaryColor,
+                      width: 1,
+                      style: BorderStyle.solid),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                   borderSide: BorderSide(
-                      color: Colors.white, width: 1, style: BorderStyle.solid),
+                      color: Theme.of(context).primaryColor,
+                      width: 1,
+                      style: BorderStyle.solid),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                   borderSide: BorderSide(
-                      color: Colors.white, width: 1, style: BorderStyle.solid),
+                      color: Theme.of(context).primaryColor,
+                      width: 1,
+                      style: BorderStyle.solid),
                 ),
                 labelText: 'Password',
                 labelStyle: TextStyle(
-                  color: Colors.white70,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
             ),
@@ -146,18 +152,7 @@ class _SSIDInputState extends State<SSIDInput> {
             height: 50,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.blue[300],
-                  blurRadius: 10.0, // has the effect of softening the shadow
-                  spreadRadius: 1.0, // has the effect of extending the shadow
-                  offset: Offset(
-                    5.0, // horizontal, move right 10
-                    5.0, // vertical, move down 10
-                  ),
-                ),
-              ],
-              color: Colors.white,
+              color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(30),
             ),
             child: FlatButton(
@@ -188,14 +183,14 @@ class _SSIDInputState extends State<SSIDInput> {
                   Text(
                     'Deploy',
                     style: TextStyle(
-                      color: Colors.lightBlueAccent,
+                      color: Colors.white,
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   Icon(
                     Icons.arrow_forward,
-                    color: Colors.lightBlueAccent,
+                    color: Colors.white,
                   ),
                 ],
               ),

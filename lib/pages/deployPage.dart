@@ -21,30 +21,35 @@ class _DeployPageState extends State<DeployPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [Color(0xff0CD9C4), Color(0xff00A9DE)]),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                "assets/logo.png",
-                width: MediaQuery.of(context).size.width * 0.5,
-              ),
-              Row(children: <Widget>[
-                VerticalText(),
-                TextLogin(),
-              ]),
-              SSIDInput(),
-            ],
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Row(
+          children: <Widget>[
+            Image.asset(
+              "assets/gatego.png",
+              height: 30,
+            ),
+          ],
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.sync,
+              color: Color(0xff00a1d3),
+            ),
+            onPressed: () {},
+          )
+        ],
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Row(children: <Widget>[
+            VerticalText(),
+            TextLogin(),
+          ]),
+          SSIDInput(),
+        ],
       ),
     );
   }

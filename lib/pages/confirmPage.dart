@@ -58,7 +58,7 @@ class _ConfirmPageState extends State<ConfirmPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(
-                "assets/logo.png",
+                "assets/gatego.png",
                 width: MediaQuery.of(context).size.width * 0.5,
               ),
               Row(children: <Widget>[

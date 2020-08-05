@@ -24,7 +24,7 @@ class _TextLoginState extends State<TextLogin> {
                 'Deploy gatego hardware with just one touch.',
                 style: TextStyle(
                   fontSize: 24,
-                  color: Colors.white,
+                  color: Theme.of(context).accentColor,
                 ),
               ),
             ),

@@ -15,7 +15,7 @@ class _VerticalTextState extends State<VerticalText> {
           child: Text(
             'gatego',
             style: TextStyle(
-              color: Colors.white,
+              color: Theme.of(context).accentColor,
               fontSize: 38,
               fontWeight: FontWeight.w900,
             ),
