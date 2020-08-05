@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:esptouch_flutter/esptouch_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:gategoDeploy/controller/WifiInfo.dart';
+import 'package:get/get.dart';
 import '../pages/sendPage.dart';
 import '../widget/verticalText.dart';
 import '../widget/textLogin.dart';
@@ -17,22 +19,16 @@ class ConfirmPage extends StatefulWidget {
 }
 
 class _ConfirmPageState extends State<ConfirmPage> {
-  String wifiName;
-  String wifiBSSID;
-  String wifiPSK;
+  final Controller c = Get.find();
 
   Stream<ESPTouchResult> stream;
   var controller = TextEditingController();
 
   void espSetup() async {
-    print(wifiName);
-    print(wifiBSSID);
-    print(wifiPSK);
-
     final task = ESPTouchTask(
-      ssid: wifiName,
-      bssid: wifiBSSID,
-      password: wifiPSK,
+      ssid: c.wifiSSID,
+      bssid: c.wifiBSSID,
+      password: c.wifiPSK,
     );
     stream = task.execute();
     final sub = stream.listen((r) => print('IP: ${r.ip} MAC: ${r.bssid}'));
@@ -41,169 +37,162 @@ class _ConfirmPageState extends State<ConfirmPage> {
 
   @override
   Widget build(BuildContext context) {
-    wifiName = widget.wifiName;
-    wifiBSSID = widget.wifiBSSID;
-    wifiPSK = widget.wifiPSK;
+    String wifiName = c.wifiSSID;
+    String wifiBSSID = c.wifiBSSID;
+    String wifiPSK = c.wifiPSK;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [Color(0xff0CD9C4), Color(0xff00A9DE)]),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                "assets/gatego.png",
-                width: MediaQuery.of(context).size.width * 0.5,
-              ),
-              Row(children: <Widget>[
-                VerticalText(),
-                TextLogin(),
-              ]),
-              Text(
-                'Confirm Connection Settings',
-                style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                height: max(MediaQuery.of(context).size.width * 0.4, 200),
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: Card(
-                  shadowColor: Colors.blue[300],
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Padding(
-                    padding: EdgeInsets.all(30),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              Icons.wifi,
-                              size: 30,
-                            ),
-                            Text(wifiName)
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              Icons.vpn_key,
-                              size: 30,
-                            ),
-                            Text(wifiPSK)
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              Icons.all_out,
-                              size: 30,
-                            ),
-                            Text(wifiBSSID)
-                          ],
-                        )
-                      ],
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Image.asset(
+          "assets/gatego.png",
+          height: 30,
+          alignment: Alignment.centerLeft,
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.sync,
+              color: Theme.of(context).primaryColor,
+            ),
+            onPressed: () {},
+          )
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 15, bottom: 50),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Text(
+                  'Great job! Please confirm your connection settings.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: max(MediaQuery.of(context).size.width * 0.4, 200),
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Card(
+                    shadowColor: Theme.of(context).primaryColor,
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Padding(
+                      padding: EdgeInsets.all(30),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.wifi,
+                                size: 30,
+                              ),
+                              Text(wifiName)
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.vpn_key,
+                                size: 30,
+                              ),
+                              Text(wifiPSK)
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.all_out,
+                                size: 30,
+                              ),
+                              Text(wifiBSSID)
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FlatButton(
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.arrow_back,
+                        color: Theme.of(context).accentColor,
+                      ),
+                      Text(
+                        'Back',
+                        style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomRight,
+                  height: 50,
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: FlatButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              SendPage(wifiBSSID, wifiName, wifiPSK),
+                        ),
+                      );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
-                        ),
                         Text(
-                          'Back',
+                          'Deploy',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.bottomRight,
-                    height: 50,
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blue[300],
-                          blurRadius:
-                              10.0, // has the effect of softening the shadow
-                          spreadRadius:
-                              1.0, // has the effect of extending the shadow
-                          offset: Offset(
-                            5.0, // horizontal, move right 10
-                            5.0, // vertical, move down 10
-                          ),
+                        Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
                         ),
                       ],
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: FlatButton(
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                SendPage(wifiBSSID, wifiName, wifiPSK),
-                          ),
-                        );
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Deploy',
-                            style: TextStyle(
-                              color: Colors.lightBlueAccent,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward,
-                            color: Colors.lightBlueAccent,
-                          ),
-                        ],
-                      ),
                     ),
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
