@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../widget/SSIDInput.dart';
-import '../widget/verticalText.dart';
-import '../widget/textLogin.dart';
 
 class DeployPage extends StatefulWidget {
   @override
@@ -41,15 +39,31 @@ class _DeployPageState extends State<DeployPage> {
           )
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Row(children: <Widget>[
-            VerticalText(),
-            TextLogin(),
-          ]),
-          SSIDInput(),
-        ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "👍",
+                style: TextStyle(fontSize: 80),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Awsome, now let's send over the WiFi connection details.",
+                  style: Theme.of(context).textTheme.headline6,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SSIDInput(),
+            ],
+          ),
+        ),
       ),
     );
   }
