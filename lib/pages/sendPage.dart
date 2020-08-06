@@ -1,11 +1,13 @@
 import 'package:esptouch_flutter/esptouch_flutter.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:gategoDeploy/controller/WifiInfo.dart';
+import 'package:gategoDeploy/widget/bottomNavBar.dart';
 import '../pages/fail.dart';
 import '../pages/success.dart';
-import '../widget/verticalText.dart';
-import '../widget/textLogin.dart';
 import 'package:get/get.dart';
+
+import 'confirmPage.dart';
 
 class SendPage extends StatefulWidget {
   @override
@@ -61,86 +63,100 @@ class _SendPageState extends State<SendPage> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [Color(0xff0CD9C4), Color(0xff00A9DE)]),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          title: Row(
+            children: <Widget>[
+              Image.asset(
+                "assets/gatego.png",
+                height: 30,
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.sync,
+                color: Color(0xff00a1d3),
+              ),
+              onPressed: () {},
+            )
+          ],
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.all(15),
+              width: MediaQuery.of(context).size.width * 0.6,
+              height: MediaQuery.of(context).size.width * 0.6,
+              child: FlareActor(
+                "assets/connect.flr",
+                alignment: Alignment.center,
+                fit: BoxFit.contain,
+                animation: "Untitled",
+              ),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset(
-                  "assets/gatego.png",
-                  width: MediaQuery.of(context).size.width * 0.5,
-                ),
-                Row(children: <Widget>[
-                  VerticalText(),
-                  TextLogin(),
-                ]),
-                LinearProgressIndicator(
-                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'Sending data to the device',
-                  style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'This may take some time',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  margin: EdgeInsets.all(8),
-                  color: Color(0xffffcd91),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.info_outline,
+            LinearProgressIndicator(
+              valueColor:
+                  AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Sending data to the device',
+              style: TextStyle(
+                  fontSize: 24,
+                  color: Theme.of(context).accentColor,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'This may take some time',
+              style: TextStyle(
+                fontSize: 18,
+                color: Theme.of(context).accentColor,
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              margin: EdgeInsets.all(8),
+              color: Color(0xffffcd91),
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.info_outline,
+                      color: Color(0xffd97700),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Expanded(
+                      child: Text(
+                        "Please make sure that your device is connected to " +
+                            c.wifiSSID +
+                            " or the proccess won't complete. If it fails check that the hardware is in SmartDeploy mode and try again. For further support email eduardo@wegotech.io",
+                        maxLines: 5,
+                        style: TextStyle(
                           color: Color(0xffd97700),
                         ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Expanded(
-                          child: Text(
-                            "Please make sure that your device is connected to " +
-                                c.wifiSSID +
-                                " or the proccess won't complete. If it fails check that the hardware is in SmartDeploy mode and try again. For further support email eduardo@wegotech.io",
-                            maxLines: 5,
-                            style: TextStyle(
-                              color: Color(0xffd97700),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

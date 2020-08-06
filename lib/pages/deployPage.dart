@@ -27,13 +27,18 @@ class _DeployPageState extends State<DeployPage> {
         backBtn: false,
       ),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         title: Row(
           children: <Widget>[
             Image.asset(
               "assets/gatego.png",
               height: 30,
+              alignment: Alignment.centerRight,
             ),
+            Expanded(
+              child: Text("data"),
+            )
           ],
         ),
         actions: <Widget>[

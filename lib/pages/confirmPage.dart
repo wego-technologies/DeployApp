@@ -18,6 +18,7 @@ class ConfirmPage extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: BottomNavBar(SendPage()),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         title: Image.asset(
           "assets/gatego.png",
