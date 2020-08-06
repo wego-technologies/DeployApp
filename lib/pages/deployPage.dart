@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gategoDeploy/pages/confirmPage.dart';
@@ -51,9 +52,15 @@ class _DeployPageState extends State<DeployPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text(
-                "👍",
-                style: TextStyle(fontSize: 80),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.6,
+                height: MediaQuery.of(context).size.width * 0.6,
+                child: FlareActor(
+                  "assets/pulse.flr",
+                  alignment: Alignment.center,
+                  fit: BoxFit.contain,
+                  animation: "stand_by",
+                ),
               ),
               SizedBox(
                 height: 20,

@@ -4,8 +4,6 @@ import 'package:gategoDeploy/controller/WifiInfo.dart';
 import 'package:location_permissions/location_permissions.dart';
 import 'package:get/get.dart';
 
-import 'nextButton.dart';
-
 class SSIDInput extends StatefulWidget {
   @override
   _SSIDInputState createState() => _SSIDInputState();

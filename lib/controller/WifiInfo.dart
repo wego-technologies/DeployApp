@@ -42,4 +42,11 @@ class Controller extends GetxController {
       "PSK": wifiPSK,
     };
   }
+
+  bool checkData() {
+    if (wifiBSSID.isNotEmpty && wifiPSK.isNotEmpty && wifiSSID.isNotEmpty) {
+      return true;
+    }
+    return false;
+  }
 }
