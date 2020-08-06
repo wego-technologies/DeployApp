@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:gategoDeploy/controller/WifiInfo.dart';
+import 'package:gategoDeploy/pages/deployPage.dart';
 import 'package:get/get.dart';
 
 class BottomNavBar extends StatelessWidget {
   final nextPage;
   final bool backBtn;
-  BottomNavBar(this.nextPage, {this.backBtn = true});
+  final String textMain;
+  final String textSec;
+  final IconData iconMain;
+  final IconData iconSec;
+  final bool goHome;
+  final bool checkData;
+  BottomNavBar(
+    this.nextPage, {
+    this.backBtn = true,
+    this.textMain = "Next",
+    this.textSec = "Back",
+    this.iconMain = Icons.arrow_forward,
+    this.iconSec = Icons.arrow_back,
+    this.goHome = false,
+    this.checkData = true,
+  });
   final Controller c = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -26,11 +42,11 @@ class BottomNavBar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Icon(
-                      Icons.arrow_back,
+                      iconSec,
                       color: Theme.of(context).accentColor,
                     ),
                     Text(
-                      'Back',
+                      textSec,
                       style: TextStyle(
                         color: Theme.of(context).accentColor,
                         fontSize: 14,
@@ -51,21 +67,28 @@ class BottomNavBar extends StatelessWidget {
           Expanded(
             child: FlatButton(
               onPressed: () {
-                if (c.checkData()) {
-                  Get.to(nextPage);
-                } else {
-                  Get.snackbar(
-                      "Error",
-                      "There are missing details, please make sure you're" +
-                          " connected to a Wi-Fi network and you have entered" +
-                          " a password.");
+                if (checkData) {
+                  if (c.checkData()) {
+                    Get.to(nextPage);
+                  } else {
+                    Get.snackbar(
+                        "Error",
+                        "There are missing details, please make sure you're" +
+                            " connected to a Wi-Fi network and you have entered" +
+                            " a password.");
+                  }
+                }
+                if (goHome) {
+                  Get.offUntil(MaterialPageRoute(builder: (_) {
+                    return DeployPage();
+                  }), (route) => false);
                 }
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'Next',
+                    textMain,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14,
@@ -73,7 +96,7 @@ class BottomNavBar extends StatelessWidget {
                     ),
                   ),
                   Icon(
-                    Icons.arrow_forward,
+                    iconMain,
                     color: Colors.white,
                   ),
                 ],

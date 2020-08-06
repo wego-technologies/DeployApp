@@ -18,6 +18,9 @@ class FailPage extends StatelessWidget {
       bottomNavigationBar: BottomNavBar(
         DeployPage(),
         backBtn: false,
+        textMain: "Re-try ",
+        iconMain: Icons.sync,
+        goHome: true,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -31,6 +34,7 @@ class FailPage extends StatelessWidget {
                 "assets/error.flr",
                 alignment: Alignment.center,
                 fit: BoxFit.contain,
+                isPaused: false,
                 animation: "pago_problema_sin_conexion",
               ),
             ),
