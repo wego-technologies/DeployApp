@@ -51,57 +51,58 @@ class _SSIDInputState extends State<SSIDInput> {
     return Column(
       children: [
         Padding(
-            padding: const EdgeInsets.only(top: 50, left: 10, right: 10),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    onChanged: (val) => c.setSSID(val),
-                    controller: controller,
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
+          padding: const EdgeInsets.only(top: 50, left: 10, right: 10),
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  onChanged: (val) => c.setSSID(val),
+                  controller: controller,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  decoration: InputDecoration(
+                    focusColor: Theme.of(context).primaryColor,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                          width: 1,
+                          style: BorderStyle.solid),
                     ),
-                    decoration: InputDecoration(
-                      focusColor: Theme.of(context).primaryColor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                            color: Theme.of(context).primaryColor,
-                            width: 1,
-                            style: BorderStyle.solid),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                            color: Theme.of(context).primaryColor,
-                            width: 1,
-                            style: BorderStyle.solid),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                            color: Theme.of(context).primaryColor,
-                            width: 1,
-                            style: BorderStyle.solid),
-                      ),
-                      fillColor: Colors.lightBlueAccent,
-                      labelText: 'Network Name',
-                      labelStyle: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                      ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                          width: 1,
+                          style: BorderStyle.solid),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                          width: 1,
+                          style: BorderStyle.solid),
+                    ),
+                    fillColor: Colors.lightBlueAccent,
+                    labelText: 'Network Name',
+                    labelStyle: TextStyle(
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.sync,
-                    color: Theme.of(context).primaryColor,
-                    size: 30,
-                  ),
-                  onPressed: () => wifi(),
-                )
-              ],
-            )),
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.sync,
+                  color: Theme.of(context).primaryColor,
+                  size: 30,
+                ),
+                onPressed: () => wifi(),
+              )
+            ],
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
           child: Container(
@@ -143,9 +144,6 @@ class _SSIDInputState extends State<SSIDInput> {
               ),
             ),
           ),
-        ),
-        NextButton(
-          text: "Next",
         ),
       ],
     );

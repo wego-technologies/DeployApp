@@ -31,8 +31,7 @@ class NextButton extends StatelessWidget {
                   c.wifiPSK.isNotEmpty) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) =>
-                        ConfirmPage(c.wifiBSSID, c.wifiSSID, c.wifiPSK),
+                    builder: (context) => ConfirmPage(),
                   ),
                 );
               } else {

@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'gatego Deployer',
       defaultTransition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 150),
       theme: ThemeData(
         primarySwatch: Colors.blue,
         primaryColor: Color(0xff00a1d3),

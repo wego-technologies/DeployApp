@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gategoDeploy/pages/confirmPage.dart';
+import 'package:gategoDeploy/widget/bottomNavBar.dart';
 import '../widget/SSIDInput.dart';
 
 class DeployPage extends StatefulWidget {
@@ -19,6 +21,10 @@ class _DeployPageState extends State<DeployPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavBar(
+        ConfirmPage(),
+        backBtn: false,
+      ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Row(

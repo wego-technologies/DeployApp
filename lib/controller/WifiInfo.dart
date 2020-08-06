@@ -35,7 +35,11 @@ class Controller extends GetxController {
     return wifiPSK;
   }
 
-  List<String> wifiInfo() {
-    return [wifiSSID, wifiBSSID, wifiPSK];
+  Map<String, String> wifiInfo() {
+    return {
+      "SSID": wifiSSID,
+      "BSSID": wifiBSSID,
+      "PSK": wifiPSK,
+    };
   }
 }

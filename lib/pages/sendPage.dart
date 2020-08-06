@@ -1,5 +1,6 @@
 import 'package:esptouch_flutter/esptouch_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:gategoDeploy/controller/WifiInfo.dart';
 import '../pages/fail.dart';
 import '../pages/success.dart';
 import '../widget/verticalText.dart';
@@ -7,19 +8,13 @@ import '../widget/textLogin.dart';
 import 'package:get/get.dart';
 
 class SendPage extends StatefulWidget {
-  final String wifiName;
-  final String wifiBSSID;
-  final String wifiPSK;
-
-  SendPage(this.wifiBSSID, this.wifiName, this.wifiPSK);
   @override
   _SendPageState createState() => _SendPageState();
 }
 
 class _SendPageState extends State<SendPage> {
-  String wifiName;
-  String wifiBSSID;
-  String wifiPSK;
+  final Controller c = Get.find();
+
   bool completed = false;
 
   void handleSuccess(ip, bssid) {
@@ -36,20 +31,21 @@ class _SendPageState extends State<SendPage> {
   }
 
   void espSetup() async {
-    print("WiFi: " + wifiName);
-    print("BSSID: " + wifiBSSID);
-    print("PSK: " + wifiPSK);
+    final info = c.wifiInfo();
+    print("WiFi: " + info["SSID"]);
+    print("BSSID: " + info["BSSID"]);
+    print("PSK: " + info["PSK"]);
 
     final task = ESPTouchTask(
-      ssid: wifiName,
-      bssid: wifiBSSID,
-      password: wifiPSK,
+      ssid: info["SSID"],
+      bssid: info["BSSID"],
+      password: info["PSK"],
     );
     final stream = task.execute();
     final sub = stream.listen((r) {
       handleSuccess(r.ip, r.bssid);
     });
-    Future.delayed(Duration(minutes: 1), () {
+    Future.delayed(Duration(seconds: 15), () {
       handleFail(sub);
     });
   }
@@ -57,17 +53,11 @@ class _SendPageState extends State<SendPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    wifiName = widget.wifiName;
-    wifiBSSID = widget.wifiBSSID;
-    wifiPSK = widget.wifiPSK;
     espSetup();
   }
 
   @override
   Widget build(BuildContext context) {
-    wifiName = widget.wifiName;
-    wifiBSSID = widget.wifiBSSID;
-    wifiPSK = widget.wifiPSK;
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -136,7 +126,7 @@ class _SendPageState extends State<SendPage> {
                         Expanded(
                           child: Text(
                             "Please make sure that your device is connected to " +
-                                wifiName +
+                                c.wifiSSID +
                                 " or the proccess won't complete. If it fails check that the hardware is in SmartDeploy mode and try again. For further support email eduardo@wegotech.io",
                             maxLines: 5,
                             style: TextStyle(
