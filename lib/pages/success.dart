@@ -26,77 +26,91 @@ class SuccessPage extends StatelessWidget {
         goHome: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 20,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.4,
-              height: MediaQuery.of(context).size.width * 0.4,
-              child: FlareActor(
-                "assets/success.flr",
-                alignment: Alignment.center,
-                fit: BoxFit.contain,
-                isPaused: false,
-                animation: "Untitled",
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: Text(
+                  "Success!",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).accentColor),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              "Successfully set up device.",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Theme.of(context).accentColor,
-                fontSize: 28,
-                fontWeight: FontWeight.w700,
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 20,
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Container(
-              height: MediaQuery.of(context).size.width * 0.4,
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                child: Padding(
-                  padding: EdgeInsets.all(30),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(
-                            Icons.wifi,
-                            size: 30,
-                          ),
-                          Text(ip)
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(
-                            Icons.all_out,
-                            size: 30,
-                          ),
-                          Text(bssid)
-                        ],
-                      )
-                    ],
+              Container(
+                width: MediaQuery.of(context).size.width * 0.4,
+                height: MediaQuery.of(context).size.width * 0.4,
+                child: FlareActor(
+                  "assets/success.flr",
+                  alignment: Alignment.center,
+                  fit: BoxFit.contain,
+                  isPaused: false,
+                  animation: "Untitled",
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Successfully set up device.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).accentColor,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Container(
+                height: MediaQuery.of(context).size.width * 0.4,
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Padding(
+                    padding: EdgeInsets.all(30),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(
+                              Icons.wifi,
+                              size: 30,
+                            ),
+                            Text(ip)
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(
+                              Icons.all_out,
+                              size: 30,
+                            ),
+                            Text(bssid)
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

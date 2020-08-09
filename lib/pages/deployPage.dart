@@ -36,9 +36,6 @@ class _DeployPageState extends State<DeployPage> {
               height: 30,
               alignment: Alignment.centerRight,
             ),
-            Expanded(
-              child: Text("data"),
-            )
           ],
         ),
         actions: <Widget>[
@@ -58,6 +55,17 @@ class _DeployPageState extends State<DeployPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
+                width: MediaQuery.of(context).size.width,
+                child: Text(
+                  "Sign Up",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).accentColor),
+                ),
+              ),
+              Container(
                 width: MediaQuery.of(context).size.width * 0.6,
                 height: MediaQuery.of(context).size.width * 0.6,
                 child: FlareActor(
@@ -73,7 +81,7 @@ class _DeployPageState extends State<DeployPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "Awsome, now let's send over the WiFi connection details.",
+                  "Now, send over the WiFi connection details.",
                   style: Theme.of(context).textTheme.headline6,
                   textAlign: TextAlign.center,
                 ),

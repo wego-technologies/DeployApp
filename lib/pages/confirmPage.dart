@@ -35,83 +35,97 @@ class ConfirmPage extends StatelessWidget {
           )
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width * 0.6,
-            height: MediaQuery.of(context).size.width * 0.6,
-            child: FlareActor(
-              "assets/waiting.flr",
-              alignment: Alignment.center,
-              fit: BoxFit.fill,
-              animation: "Alarm",
-            ),
-          ),
-          Column(
-            children: <Widget>[
-              Text(
-                'Great job! Please confirm your connection settings.',
-                textAlign: TextAlign.center,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Text(
+                "Confirm Settings",
+                textAlign: TextAlign.left,
                 style: TextStyle(
-                    fontSize: 24,
-                    color: Theme.of(context).accentColor,
-                    fontWeight: FontWeight.bold),
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).accentColor),
               ),
-              SizedBox(
-                height: 20,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.6,
+              height: MediaQuery.of(context).size.width * 0.6,
+              child: FlareActor(
+                "assets/waiting.flr",
+                alignment: Alignment.center,
+                fit: BoxFit.fill,
+                animation: "Alarm",
               ),
-              Container(
-                height: max(MediaQuery.of(context).size.width * 0.4, 200),
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: Card(
-                  //shadowColor: Theme.of(context).primaryColor,
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Padding(
-                    padding: EdgeInsets.all(30),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              Icons.wifi,
-                              size: 30,
-                            ),
-                            Text(wifiName)
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              Icons.vpn_key,
-                              size: 30,
-                            ),
-                            Text(wifiPSK)
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              Icons.all_out,
-                              size: 30,
-                            ),
-                            Text(wifiBSSID)
-                          ],
-                        )
-                      ],
+            ),
+            Column(
+              children: <Widget>[
+                Text(
+                  'Great job! Please confirm your connection settings.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: max(MediaQuery.of(context).size.width * 0.4, 200),
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Card(
+                    //shadowColor: Theme.of(context).primaryColor,
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Padding(
+                      padding: EdgeInsets.all(30),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.wifi,
+                                size: 30,
+                              ),
+                              Text(wifiName)
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.vpn_key,
+                                size: 30,
+                              ),
+                              Text(wifiPSK)
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.all_out,
+                                size: 30,
+                              ),
+                              Text(wifiBSSID)
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
