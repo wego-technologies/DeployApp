@@ -57,7 +57,7 @@ class _DeployPageState extends State<DeployPage> {
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: Text(
-                  "Sign Up",
+                  "Set wifi",
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       fontSize: 30,

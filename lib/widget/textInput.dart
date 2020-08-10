@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 
 class TextInput extends StatefulWidget {
   final Function setData;
-  const TextInput(this.setData, {Key key}) : super(key: key);
+  final TextEditingController c;
+  final IconData icon;
+  final String text;
+  final bool obscureText;
+  const TextInput(
+      {this.setData,
+      this.icon,
+      this.text,
+      this.obscureText = false,
+      Key key,
+      this.c})
+      : super(key: key);
 
   @override
   _TextInputState createState() => _TextInputState();
@@ -41,13 +52,12 @@ class _TextInputState extends State<TextInput> {
   @override
   void dispose() {
     super.dispose();
-    controller.dispose();
     _focusNode.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final padding = 16.0;
+    final padding = 8.0;
     var size = MediaQuery.of(context).size.width - padding * 2;
     return Center(
       child: Padding(
@@ -72,7 +82,7 @@ class _TextInputState extends State<TextInput> {
                 width: 10,
               ),
               Icon(
-                Icons.wifi,
+                widget.icon,
                 size: 25,
                 color: colorIcon,
               ),
@@ -82,14 +92,17 @@ class _TextInputState extends State<TextInput> {
                   borderRadius:
                       BorderRadius.horizontal(right: Radius.circular(15)),
                   child: TextField(
+                    controller: widget.c,
                     focusNode: _focusNode,
+                    obscureText: widget.obscureText,
+                    onChanged: widget.setData,
                     decoration: InputDecoration(
                       fillColor: Color(0xfff5f5f5),
                       focusColor: Color(0xfff5f5f5),
                       hoverColor: Color(0xfff5f5f5),
                       filled: true,
                       border: InputBorder.none,
-                      hintText: "Network",
+                      hintText: widget.text,
                       hintStyle: TextStyle(
                           color: Color(0xff727272),
                           fontWeight: FontWeight.w300),
