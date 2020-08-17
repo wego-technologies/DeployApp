@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gategoDeploy/pages/confirmPage.dart';
 import 'package:gategoDeploy/widget/bottomNavBar.dart';
+import 'package:get/get.dart';
+import 'package:package_info/package_info.dart';
 import '../widget/SSIDInput.dart';
 
 class DeployPage extends StatefulWidget {
@@ -44,8 +46,29 @@ class _DeployPageState extends State<DeployPage> {
               Icons.sync,
               color: Color(0xff00a1d3),
             ),
-            onPressed: () {},
-          )
+            onPressed: () {
+              Get.offUntil(MaterialPageRoute(builder: (_) {
+                return DeployPage();
+              }), (route) => false);
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.info_outline, color: Color(0xff00a1d3),),
+            onPressed: () async {
+              PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+              String appName = packageInfo.appName;
+              String version = packageInfo.version;
+              String buildNumber = packageInfo.buildNumber;
+              return showAboutDialog(
+                  context: context,
+                  applicationIcon: Image.asset("assets/bicon.png", width: 50, height: 50,),
+                  applicationName: appName + " by Wego Technologies",
+                  applicationVersion: version + " - B" + buildNumber,
+                  applicationLegalese:
+                      "All rights reserved. Copyright 2020 Wego Technologies LLC. Doubts? Contact eduardo@wegotech.io");
+            },
+          ),
         ],
       ),
       body: SingleChildScrollView(

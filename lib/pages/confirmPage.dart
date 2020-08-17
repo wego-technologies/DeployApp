@@ -6,6 +6,7 @@ import 'package:gategoDeploy/controller/WifiInfo.dart';
 import 'package:gategoDeploy/widget/bottomNavBar.dart';
 import 'package:get/get.dart';
 import '../pages/sendPage.dart';
+import 'deployPage.dart';
 
 class ConfirmPage extends StatelessWidget {
   final Controller c = Get.find();
@@ -31,7 +32,11 @@ class ConfirmPage extends StatelessWidget {
               Icons.sync,
               color: Theme.of(context).primaryColor,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Get.offUntil(MaterialPageRoute(builder: (_) {
+                return DeployPage();
+              }), (route) => false);
+            },
           )
         ],
       ),
