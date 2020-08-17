@@ -2,6 +2,8 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:gategoDeploy/pages/deployPage.dart';
 import 'package:gategoDeploy/widget/bottomNavBar.dart';
+import 'package:package_info/package_info.dart';
+import 'package:wiredash/wiredash.dart';
 
 class FailPage extends StatelessWidget {
   @override
@@ -14,6 +16,23 @@ class FailPage extends StatelessWidget {
           "assets/gatego.png",
           height: 30,
         ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.chat,
+              color: Color(0xff00a1d3),
+            ),
+            onPressed: () async {
+              PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+              String version = packageInfo.version;
+              String buildNumber = packageInfo.buildNumber;
+              Wiredash.of(context)
+                  .setIdentifiers(appVersion: version + " B" + buildNumber);
+              Wiredash.of(context).show();
+            },
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavBar(
         DeployPage(),

@@ -5,6 +5,7 @@ import 'package:gategoDeploy/pages/confirmPage.dart';
 import 'package:gategoDeploy/widget/bottomNavBar.dart';
 import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
+import 'package:wiredash/wiredash.dart';
 import '../widget/SSIDInput.dart';
 
 class DeployPage extends StatefulWidget {
@@ -53,7 +54,10 @@ class _DeployPageState extends State<DeployPage> {
             },
           ),
           IconButton(
-            icon: Icon(Icons.info_outline, color: Color(0xff00a1d3),),
+            icon: Icon(
+              Icons.info_outline,
+              color: Color(0xff00a1d3),
+            ),
             onPressed: () async {
               PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
@@ -62,11 +66,30 @@ class _DeployPageState extends State<DeployPage> {
               String buildNumber = packageInfo.buildNumber;
               return showAboutDialog(
                   context: context,
-                  applicationIcon: Image.asset("assets/bicon.png", width: 50, height: 50,),
+                  applicationIcon: Image.asset(
+                    "assets/bicon.png",
+                    width: 50,
+                    height: 50,
+                  ),
                   applicationName: appName + " by Wego Technologies",
                   applicationVersion: version + " - B" + buildNumber,
                   applicationLegalese:
                       "All rights reserved. Copyright 2020 Wego Technologies LLC. Doubts? Contact eduardo@wegotech.io");
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.chat,
+              color: Color(0xff00a1d3),
+            ),
+            onPressed: () async {
+              PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+              String version = packageInfo.version;
+              String buildNumber = packageInfo.buildNumber;
+              Wiredash.of(context)
+                  .setIdentifiers(appVersion: version + " B" + buildNumber);
+              Wiredash.of(context).show();
             },
           ),
         ],

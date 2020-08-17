@@ -2,9 +2,13 @@ import 'package:esptouch_flutter/esptouch_flutter.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:gategoDeploy/controller/WifiInfo.dart';
+import 'package:package_info/package_info.dart';
+import 'package:wiredash/wiredash.dart';
 import '../pages/fail.dart';
 import '../pages/success.dart';
 import 'package:get/get.dart';
+
+import 'deployPage.dart';
 
 class SendPage extends StatefulWidget {
   @override
@@ -44,7 +48,7 @@ class _SendPageState extends State<SendPage> {
     final sub = stream.listen((r) {
       handleSuccess(r.ip, r.bssid);
     });
-    Future.delayed(Duration(seconds: 15), () {
+    Future.delayed(Duration(seconds: 60), () {
       handleFail(sub);
     });
   }
@@ -77,8 +81,27 @@ class _SendPageState extends State<SendPage> {
                 Icons.sync,
                 color: Color(0xff00a1d3),
               ),
-              onPressed: () {},
-            )
+              onPressed: () {
+                Get.offUntil(MaterialPageRoute(builder: (_) {
+                  return DeployPage();
+                }), (route) => false);
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.chat,
+                color: Color(0xff00a1d3),
+              ),
+              onPressed: () async {
+                PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+                String version = packageInfo.version;
+                String buildNumber = packageInfo.buildNumber;
+                Wiredash.of(context)
+                    .setIdentifiers(appVersion: version + " B" + buildNumber);
+                Wiredash.of(context).show();
+              },
+            ),
           ],
         ),
         body: Padding(
