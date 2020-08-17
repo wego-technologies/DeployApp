@@ -59,15 +59,18 @@ class FailPage extends StatelessWidget {
                       color: Theme.of(context).accentColor),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width * 0.4,
+                height: MediaQuery.of(context).size.width * 0.4,
                 child: FlareActor(
                   "assets/error.flr",
                   alignment: Alignment.center,
                   fit: BoxFit.contain,
                   isPaused: false,
-                  animation: "pago_problema_sin_conexion",
+                  animation: "Untitled",
                 ),
               ),
               SizedBox(
