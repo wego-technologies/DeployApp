@@ -40,6 +40,9 @@ class _SSIDInputState extends State<SSIDInput> {
     } else {
       c.setWifi(bssid: "", ssid: "", psk: "");
     }
+    if(c.wifiPSK != null){
+      pskController.text = c.wifiPSK;
+    }
   }
 
   @override
