@@ -68,11 +68,6 @@ flutter:
     - assets/gatego.svg
     - assets/bicon.png
     ### ANIMATIONS
-    - assets/pulse.flr
-    - assets/waiting.flr
-    - assets/connect.flr
-    - assets/error.flr
-    - assets/success.flr
     - assets/aio_indicator.flr
 
   # An image asset can refer to one or more resolution-specific "variants", see
