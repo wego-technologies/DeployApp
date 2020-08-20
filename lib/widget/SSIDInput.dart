@@ -16,6 +16,9 @@ class _SSIDInputState extends State<SSIDInput> {
   String wifiBSSID;
   String wifiPSK;
   var controller = TextEditingController();
+  var pskController = TextEditingController();
+  var ssidFocus = FocusNode();
+  var pskFocus = FocusNode();
 
   final Connectivity _connectivity = Connectivity();
 
@@ -46,6 +49,15 @@ class _SSIDInputState extends State<SSIDInput> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    pskController.dispose();
+    ssidFocus.dispose();
+    pskFocus.dispose();
+    controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -60,6 +72,8 @@ class _SSIDInputState extends State<SSIDInput> {
                 icon: Icons.wifi,
                 text: "Network Name",
                 c: controller,
+                fn: ssidFocus,
+                nextFocus: (v) => FocusScope.of(context).requestFocus(pskFocus),
               ),
             ),
             IconButton(
@@ -77,9 +91,22 @@ class _SSIDInputState extends State<SSIDInput> {
         ),
         TextInput(
           setData: c.setPSK,
+          c: pskController,
           icon: Icons.vpn_key,
           text: "Password",
           obscureText: true,
+          fn: pskFocus,
+          nextFocus: (v) {
+            if (c.checkData()) {
+              FocusScope.of(context).unfocus();
+            } else {
+              Get.snackbar(
+                  "Error",
+                  "There are missing details, please make sure you're" +
+                      " connected to a Wi-Fi network and you have entered" +
+                      " a password.");
+            }
+          },
         )
       ],
     );

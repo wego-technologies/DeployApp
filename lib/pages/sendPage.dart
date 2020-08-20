@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:esptouch_flutter/esptouch_flutter.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,7 @@ class SendPage extends StatefulWidget {
 
 class _SendPageState extends State<SendPage> {
   final Controller c = Get.find();
+  StreamSubscription<ESPTouchResult> sub;
 
   bool completed = false;
 
@@ -45,7 +48,7 @@ class _SendPageState extends State<SendPage> {
       password: info["PSK"],
     );
     final stream = task.execute();
-    final sub = stream.listen((r) {
+    sub = stream.listen((r) {
       handleSuccess(r.ip, r.bssid);
     });
     Future.delayed(Duration(seconds: 60), () {
@@ -57,6 +60,12 @@ class _SendPageState extends State<SendPage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     espSetup();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    sub.cancel();
   }
 
   @override
@@ -82,6 +91,7 @@ class _SendPageState extends State<SendPage> {
                 color: Color(0xff00a1d3),
               ),
               onPressed: () {
+                handleFail(sub);
                 Get.offUntil(MaterialPageRoute(builder: (_) {
                   return DeployPage();
                 }), (route) => false);
@@ -103,40 +113,39 @@ class _SendPageState extends State<SendPage> {
               },
             ),
           ],
+          bottom: AppBar(
+            automaticallyImplyLeading: false,
+            elevation: 0,
+            title: Text(
+              "Sending data...",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).accentColor),
+            ),
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: Text(
-                  "Sending data...",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).accentColor),
-                ),
               ),
               Container(
-                margin: EdgeInsets.all(15),
-                width: MediaQuery.of(context).size.width * 0.6,
-                height: MediaQuery.of(context).size.width * 0.6,
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: MediaQuery.of(context).size.width * 0.5,
                 child: FlareActor(
-                  "assets/connect.flr",
+                  "assets/aio_indicator.flr",
                   alignment: Alignment.center,
                   fit: BoxFit.contain,
-                  animation: "Untitled",
+                  animation: "loading",
                 ),
               ),
-              LinearProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                    Theme.of(context).primaryColor),
-              ),
               SizedBox(
-                height: 20,
+                height: 30,
               ),
               Text(
                 'Sending data to the device',

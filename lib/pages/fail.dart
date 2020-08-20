@@ -33,6 +33,18 @@ class FailPage extends StatelessWidget {
             },
           ),
         ],
+        bottom: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          title: Text(
+            "Error setting up device",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).accentColor),
+          ),
+        ),
       ),
       bottomNavigationBar: BottomNavBar(
         DeployPage(),
@@ -45,32 +57,21 @@ class FailPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
+           // mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              Container(
-                width: MediaQuery.of(context).size.width,
-                child: Text(
-                  "Error",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).accentColor),
-                ),
-              ),
               SizedBox(
-                height: 20,
+                width: MediaQuery.of(context).size.width,
               ),
               Container(
-                width: MediaQuery.of(context).size.width * 0.4,
-                height: MediaQuery.of(context).size.width * 0.4,
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: MediaQuery.of(context).size.width * 0.5,
                 child: FlareActor(
-                  "assets/error.flr",
+                  "assets/aio_indicator.flr",
                   alignment: Alignment.center,
                   fit: BoxFit.contain,
-                  isPaused: false,
-                  animation: "Untitled",
+                  animation: "failure",
                 ),
               ),
               SizedBox(

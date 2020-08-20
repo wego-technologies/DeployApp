@@ -32,6 +32,18 @@ class _DeployPageState extends State<DeployPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
+        bottom: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          title: Text(
+            "Set wifi",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).accentColor),
+          ),
+        ),
         title: Row(
           children: <Widget>[
             Image.asset(
@@ -101,24 +113,13 @@ class _DeployPageState extends State<DeployPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
-                width: MediaQuery.of(context).size.width,
-                child: Text(
-                  "Set wifi",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).accentColor),
-                ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.6,
-                height: MediaQuery.of(context).size.width * 0.6,
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: MediaQuery.of(context).size.width * 0.5,
                 child: FlareActor(
-                  "assets/pulse.flr",
+                  "assets/aio_indicator.flr",
                   alignment: Alignment.center,
                   fit: BoxFit.contain,
-                  animation: "stand_by",
+                  animation: "wait_wifi",
                 ),
               ),
               SizedBox(
@@ -127,7 +128,7 @@ class _DeployPageState extends State<DeployPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "Now, send over the WiFi connection details.",
+                  "Hey! Input your wifi credentials to set up your device.",
                   style: Theme.of(context).textTheme.headline6,
                   textAlign: TextAlign.center,
                 ),

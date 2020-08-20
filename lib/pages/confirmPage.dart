@@ -56,6 +56,18 @@ class ConfirmPage extends StatelessWidget {
             },
           ),
         ],
+        bottom: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          title: Text(
+            "Confirm Settings",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).accentColor),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -63,26 +75,15 @@ class ConfirmPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
-              width: MediaQuery.of(context).size.width,
-              child: Text(
-                "Confirm Settings",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).accentColor),
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: MediaQuery.of(context).size.width * 0.5,
+                child: FlareActor(
+                  "assets/aio_indicator.flr",
+                  alignment: Alignment.center,
+                  fit: BoxFit.contain,
+                  animation: "wait_wifi",
+                ),
               ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.6,
-              height: MediaQuery.of(context).size.width * 0.6,
-              child: FlareActor(
-                "assets/waiting.flr",
-                alignment: Alignment.center,
-                fit: BoxFit.fill,
-                animation: "Alarm",
-              ),
-            ),
             Column(
               children: <Widget>[
                 Text(

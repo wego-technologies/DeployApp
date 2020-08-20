@@ -6,13 +6,17 @@ class TextInput extends StatefulWidget {
   final IconData icon;
   final String text;
   final bool obscureText;
+  final FocusNode fn;
+  final Function nextFocus;
   const TextInput(
       {this.setData,
       this.icon,
       this.text,
       this.obscureText = false,
       Key key,
-      this.c})
+      this.c,
+      this.fn,
+      this.nextFocus})
       : super(key: key);
 
   @override
@@ -20,8 +24,6 @@ class TextInput extends StatefulWidget {
 }
 
 class _TextInputState extends State<TextInput> {
-  final TextEditingController controller = TextEditingController();
-  final _focusNode = FocusNode();
   var colorIcon = Color(0xffd8d8d8);
   var colorShadow = Color(0xffe6e6e6);
   double blurRadius = 5;
@@ -30,8 +32,8 @@ class _TextInputState extends State<TextInput> {
   @override
   void initState() {
     super.initState();
-    _focusNode.addListener(() {
-      if (_focusNode.hasFocus) {
+    widget.fn.addListener(() {
+      if (widget.fn.hasFocus) {
         setState(() {
           colorIcon = Color(0xff00a1d3);
           colorShadow = Color(0xffb2e3f2);
@@ -47,12 +49,6 @@ class _TextInputState extends State<TextInput> {
         });
       }
     });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _focusNode.dispose();
   }
 
   @override
@@ -93,8 +89,11 @@ class _TextInputState extends State<TextInput> {
                       BorderRadius.horizontal(right: Radius.circular(15)),
                   child: TextField(
                     controller: widget.c,
-                    focusNode: _focusNode,
+                    focusNode: widget.fn,
                     obscureText: widget.obscureText,
+                    onSubmitted: widget.nextFocus ,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
                     onChanged: widget.setData,
                     decoration: InputDecoration(
                       fillColor: Color(0xfff5f5f5),

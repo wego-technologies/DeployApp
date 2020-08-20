@@ -21,21 +21,33 @@ class SuccessPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-              icon: Icon(
-                Icons.chat,
-                color: Color(0xff00a1d3),
-              ),
-              onPressed: () async {
-                PackageInfo packageInfo = await PackageInfo.fromPlatform();
-
-                String version = packageInfo.version;
-                String buildNumber = packageInfo.buildNumber;
-                Wiredash.of(context)
-                    .setIdentifiers(appVersion: version + " B" + buildNumber);
-                Wiredash.of(context).show();
-              },
+            icon: Icon(
+              Icons.chat,
+              color: Color(0xff00a1d3),
             ),
+            onPressed: () async {
+              PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+              String version = packageInfo.version;
+              String buildNumber = packageInfo.buildNumber;
+              Wiredash.of(context)
+                  .setIdentifiers(appVersion: version + " B" + buildNumber);
+              Wiredash.of(context).show();
+            },
+          ),
         ],
+        bottom: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          title: Text(
+            "Success!",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).accentColor),
+          ),
+        ),
       ),
       bottomNavigationBar: BottomNavBar(
         DeployPage(),
@@ -51,30 +63,17 @@ class SuccessPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Container(
-                width: MediaQuery.of(context).size.width,
-                child: Text(
-                  "Success!",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).accentColor),
-                ),
-              ),
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: 20,
               ),
               Container(
-                width: MediaQuery.of(context).size.width * 0.4,
-                height: MediaQuery.of(context).size.width * 0.4,
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: MediaQuery.of(context).size.width * 0.5,
                 child: FlareActor(
-                  "assets/success.flr",
+                  "assets/aio_indicator.flr",
                   alignment: Alignment.center,
                   fit: BoxFit.contain,
-                  isPaused: false,
-                  animation: "Untitled",
+                  animation: "success",
                 ),
               ),
               SizedBox(
