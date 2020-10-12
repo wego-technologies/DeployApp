@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wiredash/wiredash.dart';
@@ -12,7 +14,7 @@ final sentry = SentryClient(
 void main() async {
   runZonedGuarded(
     () => runApp(MyApp()),
-    (error, stackTrace) {
+    (error, stackTrace) async {
       await sentry.captureException(
         exception: error,
         stackTrace: stackTrace,
