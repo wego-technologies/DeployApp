@@ -3,8 +3,23 @@ import 'package:get/get.dart';
 import 'package:wiredash/wiredash.dart';
 import 'controller/WifiInfo.dart';
 import 'pages/deployPage.dart';
+import 'package:sentry/sentry.dart';
 
-void main() => runApp(MyApp());
+final sentry = SentryClient(
+    dsn:
+        "https://062283b1807a44298ed00ba32a0af517@o436982.ingest.sentry.io/5398934");
+
+void main() async {
+  runZonedGuarded(
+    () => runApp(MyApp()),
+    (error, stackTrace) {
+      await sentry.captureException(
+        exception: error,
+        stackTrace: stackTrace,
+      );
+    },
+  );
+}
 
 class MyApp extends StatelessWidget {
   final Controller c = Get.put(Controller());
