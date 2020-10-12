@@ -27,8 +27,8 @@ class FailPage extends StatelessWidget {
 
               String version = packageInfo.version;
               String buildNumber = packageInfo.buildNumber;
-              Wiredash.of(context)
-                  .setIdentifiers(appVersion: version + " B" + buildNumber);
+              Wiredash.of(context).setBuildProperties(
+                  buildVersion: version, buildNumber: buildNumber);
               Wiredash.of(context).show();
             },
           ),
@@ -59,7 +59,7 @@ class FailPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-           // mainAxisSize: MainAxisSize.max,
+            // mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               SizedBox(
                 width: MediaQuery.of(context).size.width,

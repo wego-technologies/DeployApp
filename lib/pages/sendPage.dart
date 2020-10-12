@@ -107,8 +107,8 @@ class _SendPageState extends State<SendPage> {
 
                 String version = packageInfo.version;
                 String buildNumber = packageInfo.buildNumber;
-                Wiredash.of(context)
-                    .setIdentifiers(appVersion: version + " B" + buildNumber);
+                Wiredash.of(context).setBuildProperties(
+                    buildVersion: version, buildNumber: buildNumber);
                 Wiredash.of(context).show();
               },
             ),

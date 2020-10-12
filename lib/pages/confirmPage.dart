@@ -51,7 +51,7 @@ class ConfirmPage extends StatelessWidget {
               String version = packageInfo.version;
               String buildNumber = packageInfo.buildNumber;
               Wiredash.of(context)
-                  .setIdentifiers(appVersion: version + " B" + buildNumber);
+                  .setBuildProperties(buildVersion: version,buildNumber: buildNumber);
               Wiredash.of(context).show();
             },
           ),
