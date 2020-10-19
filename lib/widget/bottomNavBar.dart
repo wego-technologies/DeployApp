@@ -56,7 +56,8 @@ class BottomNavBar extends StatelessWidget {
                   ],
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius:
+                      BorderRadius.horizontal(left: Radius.circular(30)),
                 ),
                 padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * 0.15,
