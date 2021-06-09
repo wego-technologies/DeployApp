@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gategoDeploy/controller/WifiInfo.dart';
-import 'package:gategoDeploy/pages/confirmPage.dart';
+import '../controller/WifiInfo.dart';
+import '../pages/confirmPage.dart';
 import 'package:get/get.dart';
 
 class NextButton extends StatelessWidget {

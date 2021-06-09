@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:gategoDeploy/controller/WifiInfo.dart';
-import 'package:gategoDeploy/widget/bottomNavBar.dart';
+import '../controller/WifiInfo.dart';
+import '../widget/bottomNavBar.dart';
 import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
 import 'package:wiredash/wiredash.dart';
@@ -50,8 +50,8 @@ class ConfirmPage extends StatelessWidget {
 
               String version = packageInfo.version;
               String buildNumber = packageInfo.buildNumber;
-              Wiredash.of(context)
-                  .setBuildProperties(buildVersion: version,buildNumber: buildNumber);
+              Wiredash.of(context).setBuildProperties(
+                  buildVersion: version, buildNumber: buildNumber);
               Wiredash.of(context).show();
             },
           ),
@@ -75,15 +75,15 @@ class ConfirmPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.width * 0.5,
-                child: FlareActor(
-                  "assets/aio_indicator.flr",
-                  alignment: Alignment.center,
-                  fit: BoxFit.contain,
-                  animation: "wait_wifi",
-                ),
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.width * 0.5,
+              child: FlareActor(
+                "assets/aio_indicator.flr",
+                alignment: Alignment.center,
+                fit: BoxFit.contain,
+                animation: "wait_wifi",
               ),
+            ),
             Column(
               children: <Widget>[
                 Text(

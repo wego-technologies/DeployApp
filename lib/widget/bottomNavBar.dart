@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gategoDeploy/controller/WifiInfo.dart';
-import 'package:gategoDeploy/pages/deployPage.dart';
+import '../controller/WifiInfo.dart';
+import '../pages/deployPage.dart';
 import 'package:get/get.dart';
 
 class BottomNavBar extends StatelessWidget {

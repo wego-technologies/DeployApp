@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:esptouch_flutter/esptouch_flutter.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:gategoDeploy/controller/WifiInfo.dart';
+import '../controller/WifiInfo.dart';
 import 'package:package_info/package_info.dart';
 import 'package:wiredash/wiredash.dart';
 import '../pages/fail.dart';

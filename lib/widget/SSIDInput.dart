@@ -1,7 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:gategoDeploy/controller/WifiInfo.dart';
-import 'package:gategoDeploy/widget/textInput.dart';
+import '../controller/WifiInfo.dart';
+import '../widget/textInput.dart';
 import 'package:location_permissions/location_permissions.dart';
 import 'package:get/get.dart';
 
@@ -40,7 +40,7 @@ class _SSIDInputState extends State<SSIDInput> {
     } else {
       c.setWifi(bssid: "", ssid: "", psk: "");
     }
-    if(c.wifiPSK != null){
+    if (c.wifiPSK != null) {
       pskController.text = c.wifiPSK;
     }
   }

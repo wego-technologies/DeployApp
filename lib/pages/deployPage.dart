@@ -1,8 +1,8 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gategoDeploy/pages/confirmPage.dart';
-import 'package:gategoDeploy/widget/bottomNavBar.dart';
+import '../pages/confirmPage.dart';
+import '../widget/bottomNavBar.dart';
 import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
 import 'package:wiredash/wiredash.dart';
@@ -99,8 +99,8 @@ class _DeployPageState extends State<DeployPage> {
 
               String version = packageInfo.version;
               String buildNumber = packageInfo.buildNumber;
-              Wiredash.of(context)
-                  .setBuildProperties(buildVersion: version,buildNumber: buildNumber);
+              Wiredash.of(context).setBuildProperties(
+                  buildVersion: version, buildNumber: buildNumber);
               Wiredash.of(context).show();
             },
           ),
